@@ -1,9 +1,6 @@
 # set directory name under home directory to English
 LANG=C xdg-user-dirs-gtk-update
 
-# disable auto sleep
-sudo systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target
-
 # install minimum libraries
 sudo apt update && sudo apt install -y git curl
 
