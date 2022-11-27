@@ -28,3 +28,6 @@ sudo apt install -y discord
 
 # install copyq
 sudo apt install -y copyq
+
+# Install AutoKey
+sudo apt install -y autokey-gtk
