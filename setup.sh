@@ -13,7 +13,7 @@ git config --global init.defaultBranch main
 sudo snap install docker
 
 # capslock -> ctrl
-sudo sh -c "echo 'evdev:atkbd:dmi:bvn*:bvr*:bd*:svn*:pn*:pvr*\n\tKEYBOARD_KEY_3A=leftctrl' > /etc/udev/hwdb.d/90-nocaps-keyboard.hwdb" 
+# sudo sh -c "echo 'evdev:atkbd:dmi:bvn*:bvr*:bd*:svn*:pn*:pvr*\n\tKEYBOARD_KEY_3A=leftctrl' > /etc/udev/hwdb.d/90-nocaps-keyboard.hwdb" 
 
 # Install VSCode
 curl -L https://go.microsoft.com/fwlink/?LinkID=760868 -o vscode.deb
