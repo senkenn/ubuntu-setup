@@ -1,3 +1,10 @@
+GIT_USERNAME=$1
+GIT_USEREMAIL=$2
+RUST_TOOLCHAIN=$3
+echo "Git user name: $1"
+echo "Git user email: $2"
+echo "Rust Toolchain Version: $3"
+
 # set directory name under home directory to English
 LANG=C xdg-user-dirs-gtk-update
 
@@ -5,15 +12,12 @@ LANG=C xdg-user-dirs-gtk-update
 sudo apt update && sudo apt install -y git curl
 
 # git initial setup
-git config --global user.name senkenn
+git config --global user.name $GIT_USERNAME
 git config --global user.email senken32@gmail.com
 git config --global init.defaultBranch main
 
 # Install Docker, Docker Compose 
 sudo snap install docker
-
-# capslock -> ctrl
-# sudo sh -c "echo 'evdev:atkbd:dmi:bvn*:bvr*:bd*:svn*:pn*:pvr*\n\tKEYBOARD_KEY_3A=leftctrl' > /etc/udev/hwdb.d/90-nocaps-keyboard.hwdb" 
 
 # Install VSCode
 curl -L https://go.microsoft.com/fwlink/?LinkID=760868 -o vscode.deb
@@ -24,10 +28,23 @@ wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo apt install -y ./google-chrome-stable_current_amd64.deb
 
 # install discord
-sudo apt install -y discord
+sudo snap install discord
 
 # install copyq
 sudo apt install -y copyq
 
-# Install AutoKey
-sudo apt install -y autokey-gtk
+# install rust
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | \
+    sh -s -- -y --default-toolchain "${RUST_TOOLCHAIN}" --no-modify-path
+
+# install xremap
+cargo install xremap --features gnome
+
+# automatically start app
+cp -r autostart $HOME/.config
+
+# remove keyring
+cp $HOME/.local/share/keyrings/login.keyring ./login-bak.keyring && rm -f $HOME/.local/share/keyrings/login.keyring
+
+# reboot
+sudo reboot

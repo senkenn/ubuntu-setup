@@ -13,7 +13,7 @@ keymap:
       KEY_HENKAN-k: up
       KEY_HENKAN-l: right
       KEY_HENKAN-KEY_SEMICOLON: backspace
-      KEY_HENKAN-KEY_APOSTROPHE: delete # KEY_APOSTROPHE: colon
+      KEY_HENKAN-KEY_APOSTROPHE: delete
       KEY_HENKAN-q: f1
       KEY_HENKAN-w: f2
       KEY_HENKAN-e: f3
