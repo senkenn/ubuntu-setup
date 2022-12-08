@@ -1,9 +1,20 @@
+#!/bin/sh
+
+if [ $# -lt 3 ]; then
+  echo Error: Missing arguments
+  echo ./setup.sh [Git user name] [Git user email] [Rust Toolchain Version]
+  exit
+fi
+
 GIT_USERNAME=$1
 GIT_USEREMAIL=$2
 RUST_TOOLCHAIN=$3
-echo "Git user name: $1"
-echo "Git user email: $2"
+echo "Git user name         : $1"
+echo "Git user email        : $2"
 echo "Rust Toolchain Version: $3"
+
+read -p "ok? (y/N): " yn
+case "$yn" in [yY]*) ;; *) echo "abort." ; exit ;; esac
 
 # set directory name under home directory to English
 LANG=C xdg-user-dirs-gtk-update
