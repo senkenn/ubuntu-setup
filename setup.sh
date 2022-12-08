@@ -40,8 +40,8 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | \
 # install xremap
 cargo install xremap --features gnome
 
-# automatically start app
-cp -r autostart $HOME/.config
+# start xremap automatically on boot
+sudo cp ./xremap.service /etc/systemd/system/
 
 # remove keyring
 cp $HOME/.local/share/keyrings/login.keyring ./login-bak.keyring && rm -f $HOME/.local/share/keyrings/login.keyring

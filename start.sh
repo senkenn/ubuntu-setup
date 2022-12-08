@@ -1,4 +1,3 @@
-#!/usr/bin/sh
+#!/bin/sh
 
-sudo xremap hotkey.yml
-echo "Start" >> /var/log/xremap.log
+/home/senken/.cargo/bin/xremap /home/senken/ubuntu-setup/hotkey.yml
