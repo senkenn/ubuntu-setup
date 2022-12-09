@@ -19,8 +19,8 @@ case "$yn" in [yY]*) ;; *) echo "abort." ; exit ;; esac
 # set directory name under home directory to English
 LANG=C xdg-user-dirs-gtk-update
 
-# install minimum libraries
-sudo apt update && sudo apt install -y git curl
+# install libraries
+sudo apt update && sudo apt upgrade -y && sudo apt install -y git curl gcc
 
 # git initial setup
 git config --global user.name $GIT_USERNAME
@@ -46,7 +46,8 @@ sudo apt install -y copyq
 
 # install rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | \
-    sh -s -- -y --default-toolchain "${RUST_TOOLCHAIN}" --no-modify-path
+    sh -s -- -y --default-toolchain "${RUST_TOOLCHAIN}"
+source "$HOME/.cargo/env"
 
 # install xremap
 cargo install xremap --features gnome
