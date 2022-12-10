@@ -54,6 +54,7 @@ cargo install xremap --features gnome
 
 # start xremap automatically on boot
 sudo cp ./xremap.service /etc/systemd/system/
+sudo systemctl enable xremap.service
 
 # remove keyring
 cp $HOME/.local/share/keyrings/login.keyring ./login-bak.keyring && rm -f $HOME/.local/share/keyrings/login.keyring
