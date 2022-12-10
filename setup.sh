@@ -58,5 +58,8 @@ sudo cp ./xremap.service /etc/systemd/system/
 # remove keyring
 cp $HOME/.local/share/keyrings/login.keyring ./login-bak.keyring && rm -f $HOME/.local/share/keyrings/login.keyring
 
+# set keybindings
+./keybindings.sh
+
 # reboot
 sudo reboot
