@@ -29,6 +29,12 @@ git config --global init.defaultBranch main
 
 # Install Docker, Docker Compose 
 sudo snap install docker
+sudo groupadd docker
+sudo usermod -aG docker $USER
+
+# set firewall
+sudo ufw default deny
+sudo ufw enable
 
 # Install VSCode
 curl -L https://go.microsoft.com/fwlink/?LinkID=760868 -o vscode.deb
