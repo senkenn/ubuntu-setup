@@ -24,11 +24,25 @@ sudo apt update && sudo apt upgrade -y && sudo apt install -y git curl gcc
 
 # git initial setup
 git config --global user.name $GIT_USERNAME
-git config --global user.email senken32@gmail.com
+git config --global user.email $GIT_USEREMAIL
 git config --global init.defaultBranch main
 
-# Install Docker, Docker Compose 
-sudo snap install docker
+# Install Docker, Docker Compose -> https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository
+# Do not use snap install. Not working well on VSCode Dev Containers extension
+sudo apt-get install \
+    ca-certificates \
+    curl \
+    gnupg \
+    lsb-release
+sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+
+# Use docker command without sudo
 sudo groupadd docker
 sudo usermod -aG docker $USER
 
@@ -62,7 +76,7 @@ cargo install xremap --features gnome
 sudo cp ./xremap.service /etc/systemd/system/
 sudo systemctl enable xremap.service
 
-# remove keyring
+# remove login keyring
 cp $HOME/.local/share/keyrings/login.keyring ./login-bak.keyring && rm -f $HOME/.local/share/keyrings/login.keyring
 
 # set keybindings
