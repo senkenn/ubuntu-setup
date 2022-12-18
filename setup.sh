@@ -20,12 +20,13 @@ case "$yn" in [yY]*) ;; *) echo "abort." ; exit ;; esac
 LANG=C xdg-user-dirs-gtk-update
 
 # install libraries
-sudo apt update && sudo apt upgrade -y && sudo apt install -y git curl gcc
+sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get install -y git curl gcc
 
 # git initial setup
 git config --global user.name $GIT_USERNAME
 git config --global user.email $GIT_USEREMAIL
 git config --global init.defaultBranch main
+git config --global --add safe.directory *
 
 # Install Docker, Docker Compose -> https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository
 # Do not use snap install. Not working well on VSCode Dev Containers extension
