@@ -9,8 +9,8 @@ fi
 GIT_USERNAME=$1
 GIT_USEREMAIL=$2
 RUST_TOOLCHAIN=$3
-echo "Git user name         : $1"
-echo "Git user email        : $2"
+echo "Git User Name         : $1"
+echo "Git User Email        : $2"
 echo "Rust Toolchain Version: $3"
 
 read -p "ok? (y/N): " yn
@@ -19,8 +19,27 @@ case "$yn" in [yY]*) ;; *) echo "abort." ; exit ;; esac
 # set directory name under home directory to English
 LANG=C xdg-user-dirs-gtk-update
 
-# install libraries
-sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get install -y git curl gcc
+# install minimal libraries
+sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get install -y git curl
+
+# set system language to English
+sudo update-locale LANG=en_US.UTF8
+
+# install zsh
+sudo apt-get install -y zsh
+zsh
+sudo sed -i.bak "s|$HOME:|$HOME:$SHELL|" /etc/passwd
+
+# install zsh extension (prezto)
+RUN git clone --recursive https://github.com/sorin-ionescu/prezto.git $HOME/.zprezto
+RUN ln -s $HOME/.zprezto/runcoms/zlogin    $HOME/.zlogin \
+  && ln -s $HOME/.zprezto/runcoms/zlogout   $HOME/.zlogout \
+  && ln -s $HOME/.zprezto/runcoms/zpreztorc $HOME/.zpreztorc \
+  && ln -s $HOME/.zprezto/runcoms/zprofile  $HOME/.zprofile \
+  && ln -s $HOME/.zprezto/runcoms/zshenv    $HOME/.zshenv \
+  && ln -s $HOME/.zprezto/runcoms/zshrc     $HOME/.zshrc
+echo "zstyle ':prezto:module:prompt' theme 'powerlevel10k'" >> $HOME/.zpreztorc
+\cp -f zsh/.* $HOME
 
 # git initial setup
 git config --global user.name $GIT_USERNAME
@@ -66,6 +85,7 @@ sudo snap install discord
 sudo apt install -y copyq
 
 # install rust
+sudo apt install -y gcc
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | \
     sh -s -- -y --default-toolchain "${RUST_TOOLCHAIN}"
 source "$HOME/.cargo/env"
@@ -74,7 +94,7 @@ source "$HOME/.cargo/env"
 cargo install xremap --features gnome
 
 # start xremap automatically on boot
-sudo cp ./xremap.service /etc/systemd/system/
+sudo cp ./xremap/xremap.service /etc/systemd/system/
 sudo systemctl enable xremap.service
 
 # remove login keyring
