@@ -2,7 +2,7 @@
 
 if [ $# -lt 4 ]; then
   echo Error: Missing arguments
-  echo ./setup.sh [Git user name] [Git user email] [Rust Toolchain Version] [Reboot at the end(y/n)]
+  echo ./setup.sh [Git user name] [Git user email] [Rust Toolchain Version] [Reboot at the end\(y/n\)]
   exit
 fi
 
