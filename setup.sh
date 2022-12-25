@@ -27,7 +27,7 @@ sudo update-locale LANG=en_US.UTF8
 
 # install zsh
 sudo apt-get install -y zsh
-NEW_SHELL=/usr/bin/zsh
+NEW_SHELL=$(which zsh)
 sudo sed -i.bak "s|$SHELL|$NEW_SHELL|" /etc/passwd
 
 # install zsh extension (prezto)
