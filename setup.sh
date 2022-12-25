@@ -108,8 +108,8 @@ sudo systemctl enable xremap.service
 # remove login keyring
 cp $HOME/.local/share/keyrings/login.keyring ./login-bak.keyring && rm -f $HOME/.local/share/keyrings/login.keyring
 
-# set keybindings
-./keybindings.sh
+# gsettings
+./gsettingss.sh
 
 # reboot
 if [ $4 = "y" ] ; then
