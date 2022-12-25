@@ -27,8 +27,8 @@ sudo update-locale LANG=en_US.UTF8
 
 # install zsh
 sudo apt-get install -y zsh
-zsh
-sudo sed -i.bak "s|$HOME:|$HOME:$SHELL|" /etc/passwd
+NEW_SHELL=/usr/bin/zsh
+sudo sed -i.bak "s|$SHELL|$NEW_SHELL|" /etc/passwd
 
 # install zsh extension (prezto)
 RUN git clone --recursive https://github.com/sorin-ionescu/prezto.git $HOME/.zprezto
@@ -49,7 +49,7 @@ git config --global --add safe.directory *
 
 # Install Docker, Docker Compose -> https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository
 # Do not use snap install. Not working well on VSCode Dev Containers extension
-sudo apt-get install \
+sudo apt-get install -y \
     ca-certificates \
     curl \
     gnupg \
@@ -67,8 +67,8 @@ sudo groupadd docker
 sudo usermod -aG docker $USER
 
 # set firewall
-sudo ufw default deny
-sudo ufw enable
+# sudo ufw default deny
+# sudo ufw enable
 
 # Install VSCode
 curl -L https://go.microsoft.com/fwlink/?LinkID=760868 -o vscode.deb
