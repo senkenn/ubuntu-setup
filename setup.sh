@@ -39,7 +39,8 @@ RUN ln -s $HOME/.zprezto/runcoms/zlogin    $HOME/.zlogin \
   && ln -s $HOME/.zprezto/runcoms/zshenv    $HOME/.zshenv \
   && ln -s $HOME/.zprezto/runcoms/zshrc     $HOME/.zshrc
 echo "zstyle ':prezto:module:prompt' theme 'powerlevel10k'" >> $HOME/.zpreztorc
-\cp -f zsh/.* $HOME
+cp $HOME/ubuntu-setup/zsh/.p10k.zsh $HOME
+cp $HOME/ubuntu-setup/zsh/.zshrc $HOME
 
 # git initial setup
 git config --global user.name $GIT_USERNAME
