@@ -83,7 +83,7 @@ wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo apt-get install -y ./google-chrome-stable_current_amd64.deb && rm ./google-chrome-stable_current_amd64.deb
 
 # install discord
-wget -O ~/discord.deb "https://discordapp.com/api/download?platform=linux&format=deb"
+wget -O ./discord.deb "https://discordapp.com/api/download?platform=linux&format=deb"
 sudo apt-get install -y ./discord.deb && rm ./discord.deb
 
 # install slack
