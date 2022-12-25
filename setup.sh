@@ -1,8 +1,8 @@
 #!/bin/sh
 
-if [ $# -lt 3 ]; then
+if [ $# -lt 4 ]; then
   echo Error: Missing arguments
-  echo ./setup.sh [Git user name] [Git user email] [Rust Toolchain Version]
+  echo ./setup.sh [Git user name] [Git user email] [Rust Toolchain Version] [Reboot at the end(y/n)]
   exit
 fi
 
@@ -12,6 +12,7 @@ RUST_TOOLCHAIN=$3
 echo "Git User Name         : $1"
 echo "Git User Email        : $2"
 echo "Rust Toolchain Version: $3"
+echo "Reboot at the end(y/n): $4"
 
 read -p "ok? (y/N): " yn
 case "$yn" in [yY]*) ;; *) echo "abort." ; exit ;; esac
@@ -111,4 +112,8 @@ cp $HOME/.local/share/keyrings/login.keyring ./login-bak.keyring && rm -f $HOME/
 ./keybindings.sh
 
 # reboot
-sudo reboot
+if [ $4 = "y" ] ; then
+  sudo reboot
+else
+  echo "\n\nfinished!!"
+fi
