@@ -32,8 +32,8 @@ NEW_SHELL=$(which zsh)
 sudo sed -i.bak "s|$HOME:$SHELL|$HOME:$NEW_SHELL|" /etc/passwd
 
 # install zsh extension (prezto)
-RUN git clone --recursive https://github.com/sorin-ionescu/prezto.git $HOME/.zprezto
-RUN ln -s $HOME/.zprezto/runcoms/zlogin    $HOME/.zlogin \
+git clone --recursive https://github.com/sorin-ionescu/prezto.git $HOME/.zprezto
+ln -s $HOME/.zprezto/runcoms/zlogin    $HOME/.zlogin \
   && ln -s $HOME/.zprezto/runcoms/zlogout   $HOME/.zlogout \
   && ln -s $HOME/.zprezto/runcoms/zpreztorc $HOME/.zpreztorc \
   && ln -s $HOME/.zprezto/runcoms/zprofile  $HOME/.zprofile \
