@@ -18,9 +18,9 @@ gsettings set org.gnome.shell.extensions.dash-to-dock show-apps-at-top true
 gsettings set org.gnome.shell.extensions.dash-to-dock dock-position "BOTTOM"
 gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 24
 gsettings set org.gnome.shell favorite-apps "['google-chrome.desktop', 'code.desktop', 'org.gnome.Nautilus.desktop', 'discord.desktop', 'slack_slack.desktop']"
-gsettings set org.gnome.mutter workspaces-only-on-primary false # workspaces on all displays
 
 # Others
+gsettings set org.gnome.mutter workspaces-only-on-primary false # workspaces on all displays
 gsettings set org.gnome.desktop.input-sources sources "[('ibus', 'mozc-jp'), ('xkb', 'jp')]" # Change the order of input sources
 gsettings set org.gnome.desktop.session idle-delay "uint32 900"
 gsettings set org.gnome.desktop.screensaver lock-enabled false
