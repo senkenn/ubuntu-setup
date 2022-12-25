@@ -28,7 +28,7 @@ sudo update-locale LANG=en_US.UTF8
 # install zsh
 sudo apt-get install -y zsh
 NEW_SHELL=$(which zsh)
-sudo sed -i.bak "s|$SHELL|$NEW_SHELL|" /etc/passwd
+sudo sed -i.bak "s|$HOME:$SHELL|$HOME:$NEW_SHELL|" /etc/passwd
 
 # install zsh extension (prezto)
 RUN git clone --recursive https://github.com/sorin-ionescu/prezto.git $HOME/.zprezto
@@ -41,6 +41,7 @@ RUN ln -s $HOME/.zprezto/runcoms/zlogin    $HOME/.zlogin \
 echo "zstyle ':prezto:module:prompt' theme 'powerlevel10k'" >> $HOME/.zpreztorc
 cp $HOME/ubuntu-setup/zsh/.p10k.zsh $HOME
 cp $HOME/ubuntu-setup/zsh/.zshrc $HOME
+zsh
 
 # git initial setup
 git config --global user.name $GIT_USERNAME
@@ -73,20 +74,25 @@ sudo usermod -aG docker $USER
 
 # Install VSCode
 curl -L https://go.microsoft.com/fwlink/?LinkID=760868 -o vscode.deb
-sudo apt install -y ./vscode.deb && rm ./vscode.deb
+sudo apt-get install -y ./vscode.deb && rm ./vscode.deb
+sudo apt-get install -y python3-venv # for PlatformIO extension
 
 # Install Chrome
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-sudo apt install -y ./google-chrome-stable_current_amd64.deb && rm ./google-chrome-stable_current_amd64.deb
+sudo apt-get install -y ./google-chrome-stable_current_amd64.deb && rm ./google-chrome-stable_current_amd64.deb
 
 # install discord
-sudo snap install discord
+wget -O ~/discord.deb "https://discordapp.com/api/download?platform=linux&format=deb"
+sudo apt-get install -y ./discord.deb && rm ./discord.deb
+
+# install slack
+sudo snap install slack
 
 # install copyq
-sudo apt install -y copyq
+sudo apt-get install -y copyq
 
 # install rust
-sudo apt install -y gcc
+sudo apt-get install -y gcc
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | \
     sh -s -- -y --default-toolchain "${RUST_TOOLCHAIN}"
 source "$HOME/.cargo/env"
@@ -95,7 +101,7 @@ source "$HOME/.cargo/env"
 cargo install xremap --features gnome
 
 # start xremap automatically on boot
-sudo cp ./xremap/xremap.service /etc/systemd/system/
+sudo cp $HOME/ubuntu-setup/xremap/xremap.service /etc/systemd/system/
 sudo systemctl enable xremap.service
 
 # remove login keyring
