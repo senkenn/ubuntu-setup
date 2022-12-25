@@ -14,7 +14,7 @@ echo "Git User Email        : $2"
 echo "Rust Toolchain Version: $3"
 echo "Reboot at the end(y/n): $4"
 
-read -p "ok? (y/N): " yn
+read "yn?ok? (y/N): "
 case "$yn" in [yY]*) ;; *) echo "abort." ; exit ;; esac
 
 # set directory name under home directory to English
@@ -56,7 +56,7 @@ sudo usermod -aG docker $USER
 # sudo ufw enable
 
 # Install VSCode
-curl -L https://go.microsoft.com/fwlink/?LinkID=760868 -o vscode.deb
+curl -L "https://go.microsoft.com/fwlink/?LinkID=760868"-o vscode.deb
 sudo apt-get install -y ./vscode.deb && rm ./vscode.deb
 sudo apt-get install -y python3-venv # for PlatformIO extension
 
@@ -91,7 +91,7 @@ sudo systemctl enable xremap.service
 cp $HOME/.local/share/keyrings/login.keyring ./login-bak.keyring && rm -f $HOME/.local/share/keyrings/login.keyring
 
 # gsettings
-./gsettingss.sh
+./gsettings.sh
 
 # reboot
 if [ $4 = "y" ] ; then

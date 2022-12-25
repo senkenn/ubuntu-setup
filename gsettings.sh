@@ -23,4 +23,4 @@ gsettings set org.gnome.mutter workspaces-only-on-primary false # workspaces on 
 # Others
 gsettings set org.gnome.desktop.input-sources sources "[('ibus', 'mozc-jp'), ('xkb', 'jp')]" # Change the order of input sources
 gsettings set org.gnome.desktop.session idle-delay "uint32 900"
-org.gnome.desktop.screensaver lock-enabled false
+gsettings set org.gnome.desktop.screensaver lock-enabled false
