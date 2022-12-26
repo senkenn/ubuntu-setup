@@ -2,7 +2,7 @@
 
 if [ $# -lt 4 ]; then
   echo Error: Missing arguments
-  echo ./ubuntu-setup.sh [Git user name] [Git user email] [Rust Toolchain Version] [Reboot at the end\(y/n\)]
+  echo "./ubuntu-setup.sh [Git user name] [Git user email] [Rust Toolchain Version] [Reboot at the end(y/n)]"
   exit
 fi
 
@@ -56,7 +56,7 @@ sudo usermod -aG docker $USER
 # sudo ufw enable
 
 # Install VSCode
-curl -L "https://go.microsoft.com/fwlink/?LinkID=760868"-o vscode.deb
+curl -L "https://go.microsoft.com/fwlink/?LinkID=760868" -o vscode.deb
 sudo apt-get install -y ./vscode.deb && rm ./vscode.deb
 sudo apt-get install -y python3-venv # for PlatformIO extension
 
