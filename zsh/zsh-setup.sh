@@ -1,8 +1,8 @@
-#!/bin/sh
+#!/bin/bash
 
 # install zsh
 sudo apt-get install -y zsh
-sudo sed -i.bak "s|$HOME:/bin/bash|$HOME:$/bin/zsh|" /etc/passwd
+sudo sed -i.bak "s|$HOME:/bin/bash|$HOME:/bin/zsh|" /etc/passwd
 
 # install zsh extension (prezto)
 git clone --recursive https://github.com/sorin-ionescu/prezto.git $HOME/.zprezto
