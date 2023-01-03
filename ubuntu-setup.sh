@@ -32,24 +32,8 @@ git config --global user.email $GIT_USEREMAIL
 git config --global init.defaultBranch main
 git config --global --add safe.directory "*"
 
-# Install Docker, Docker Compose -> https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository
-# Do not use snap install. Not working well on VSCode Dev Containers extension
-sudo apt-get install -y \
-    ca-certificates \
-    curl \
-    gnupg \
-    lsb-release
-sudo mkdir -p /etc/apt/keyrings
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-echo \
-  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
-  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-sudo apt-get update
-sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
-
-# Use docker command without sudo
-sudo groupadd docker
-sudo usermod -aG docker $USER
+# remove login keyring
+cp $HOME/.local/share/keyrings/login.keyring ./login-bak.keyring && rm -f $HOME/.local/share/keyrings/login.keyring
 
 # set firewall
 # sudo ufw default deny
@@ -87,8 +71,29 @@ cargo install xremap --features gnome
 sudo cp $HOME/ubuntu-setup/xremap/xremap.service /etc/systemd/system/
 sudo systemctl enable xremap.service
 
-# remove login keyring
-cp $HOME/.local/share/keyrings/login.keyring ./login-bak.keyring && rm -f $HOME/.local/share/keyrings/login.keyring
+# Install Docker, Docker Compose -> https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository
+# Do not use snap install. Not working well on VSCode Dev Containers extension
+sudo apt-get install -y \
+    ca-certificates \
+    curl \
+    gnupg \
+    lsb-release
+sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
+
+# Use docker command without sudo
+sudo groupadd docker
+sudo usermod -aG docker $USER
+
+# Volta
+curl https://get.volta.sh | bash
+echo 'export VOLTA_HOME="$HOME/.volta"' >> $HOME/.zshrc
+echo 'export PATH="$VOLTA_HOME/bin:$PATH"' >> $HOME/.zshrc
 
 # gsettings
 ./gsettings.sh
