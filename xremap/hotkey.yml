@@ -5,8 +5,8 @@ keymap:
   - remap:
       KEY_HENKAN-a: Shift-F10 # Application key
       KEY_HENKAN-s: home
-      KEY_HENKAN-d: PageDown
-      KEY_HENKAN-f: PageUp
+      KEY_HENKAN-d: PageUp
+      KEY_HENKAN-f: PageDown
       KEY_HENKAN-g: end
       KEY_HENKAN-h: left
       KEY_HENKAN-j: down
@@ -28,3 +28,5 @@ keymap:
       KEY_HENKAN-KEY_RIGHTBRACE: f12
       KEY_HENKAN-space: esc
       KEY_HENKAN-KEY_MUHENKAN: KEY_KATAKANAHIRAGANA
+      CapsLock: Ctrl_L
+
